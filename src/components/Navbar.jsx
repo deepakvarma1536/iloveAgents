@@ -46,11 +46,21 @@ export default function Navbar({ sidebarOpen, setSidebarOpen }) {
 
       {/* Right */}
       <div className="flex items-center gap-2">
+
+        <Link
+          to="/customer-success-checkin"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors
+      dark:bg-surface-card dark:text-text-secondary dark:hover:text-text-primary dark:border-border
+      bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-200"
+        >
+          <span>CS Check-In</span>
+        </Link>
+
         <Link
           to="/workflows"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors
-            dark:bg-surface-card dark:text-text-secondary dark:hover:text-text-primary dark:border-border
-            bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-200"
+      dark:bg-surface-card dark:text-text-secondary dark:hover:text-text-primary dark:border-border
+      bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-200"
         >
           <span>Workflows</span>
         </Link>
