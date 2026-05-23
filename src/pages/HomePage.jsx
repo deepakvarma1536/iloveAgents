@@ -7,6 +7,7 @@ import { useFavorites } from '../lib/useFavorites'
 import { useHistory } from '../lib/useHistory'
 import RecentRuns from '../components/RecentRuns'
 import { useDocumentTitle } from '../lib/useDocumentTitle'
+import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 
 // Derive unique sorted categories from the registry
 const allCategories = [...new Set(agents.map((a) => a.category))].sort()
@@ -33,6 +34,13 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState(null)
   useDocumentTitle()
+
+  useKeyboardShortcuts({
+    '/': (e) => {
+      e.preventDefault();
+      document.getElementById('agent-search')?.focus();
+    },
+  });
   
   const { favorites } = useFavorites()
   const { history, deleteRun, clearHistory } = useHistory()

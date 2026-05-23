@@ -23,6 +23,7 @@ import { useApiKey } from "../lib/useApiKey";
 import { streamAgent } from "../lib/llmAdapter";
 import { useHistory } from "../lib/useHistory";
 import { resolveAgentModel, MODEL_MAP } from "../lib/resolveAgentModel";
+import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
 
 const providerLabels = {
   openai: "OpenAI",
@@ -72,6 +73,16 @@ export default function AgentRunner({ agent }) {
 
   const isPromptModified = customPrompt !== agent.systemPrompt;
   const abortControllerRef = useRef(null);
+
+  useKeyboardShortcuts({
+    'Control+Enter': () => {
+      if (canRun() && !loading) handleRun();
+    },
+    'Escape': () => {
+      handleClear();
+      setPlaygroundOpen(false);
+    },
+  });
 
   useEffect(() => {
     setSelectedModel(MODEL_MAP[provider] || MODEL_MAP.openai);
