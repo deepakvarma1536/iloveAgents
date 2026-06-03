@@ -58,5 +58,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
-              body: `Hey everyone! 👋\n\n${mentions}\n\nThis issue has been assigned to @${assignedPerson}.\n\nIf you were interested in working on this, please check out our other open issues and pick one that interests you.\n\nThank you for your enthusiasm — it means a lot! 🙏\n\n— [@AditthyaSS](https://github.com/AditthyaSS)`
+              body: `Hey everyone! 👋\n\n${mentions}\n\nThis issue has been assigned to @${assignedPerson}.\n\nIf you were interested in working on this, hang tight — if the current contributor goes inactive and no PR is opened within 5 days, this issue will be automatically reassigned to the next interested contributor. So stay engaged and keep an eye on this thread! 👀\n\nIn the meantime, feel free to check out our other open issues and pick one that interests you.\n\nThank you for your enthusiasm — it means a lot! 🙏\n\n— [@AditthyaSS](https://github.com/AditthyaSS)`
             });
