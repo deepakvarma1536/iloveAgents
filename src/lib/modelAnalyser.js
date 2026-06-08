@@ -54,16 +54,13 @@ Be specific and practical. Consider context window, speed, cost and output quali
 
   const userMessage = `Analyse the best model for this agent:\n${agentContext}`;
 
- const result = await streamAgent({
-  provider,
-  model: provider === "gemini" ? "gemini-2.5-flash" 
-       : provider === "anthropic" ? "claude-3-5-haiku-20241022" 
-       : "gpt-4o-mini",
-  apiKey,
-  systemPrompt,
-  userMessage,
-  onChunk: () => {},
-});
+  const result = await streamAgent({
+    provider,
+    apiKey,
+    systemPrompt,
+    userMessage,
+    onChunk: () => {},
+  });
 
   return result.content;
 }
