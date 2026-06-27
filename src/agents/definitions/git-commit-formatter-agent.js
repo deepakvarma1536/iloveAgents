@@ -36,7 +36,8 @@ export default {
         "Refactoring (refactor)",
         "Performance (perf)",
         "Testing (test)",
-        "Build/CI/CD (build/ci)",
+        "Build (build)",
+        "CI (ci)",
         "Chore (chore)",
       ],
       defaultValue: "Auto-Detect",
@@ -59,7 +60,7 @@ Always respond in this exact format:
 ## Generated Conventional Commit
 
 \`\`\`text
-[type]([scope]): [short, active-voice summary under 50 characters in lowercase]
+[type][(scope if provided)]: [short, active-voice summary under 50 characters in lowercase]
 \`\`\`
 
 ---
@@ -72,20 +73,21 @@ Always respond in this exact format:
 ---
 
 ### Pull Request Summary
-**Type of Change:** [Feature / Bug Fix / Documentation / Refactor / Style / Performance / Test / Build / Chore]
+**Type of Change:** [Feature / Bug Fix / Documentation / Refactor / Style / Performance / Test / Build / CI / Chore]
 **Scope:** [scope or N/A]
 
 #### Description
 [1-2 sentences summarizing the change and the reasoning behind it]
 
 #### Checklist
-- [x] Code is clean and conforms to standard style guidelines
-- [x] Existing tests pass successfully
-- [x] Documentation has been updated if required
+- [ ] Code is clean and conforms to standard style guidelines
+- [ ] Existing tests pass successfully
+- [ ] Documentation has been updated if required
 
 ---
 
 Rules:
+- If no scope is provided, omit the parentheses entirely (for example: \`fix: handle missing session cookie\`).
 - Keep the commit title short, concise, and in the imperative mood (e.g. "add user auth" instead of "added user auth" or "adds user auth").
 - Do not capitalize the first letter of the commit title.
 - Ensure the commit body explains the 'what' and 'why' of the change, not the 'how'.
