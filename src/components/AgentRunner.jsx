@@ -15,6 +15,7 @@ import {
   GitBranch,
   Trash2,
   CalendarClock,
+  Layers,
 } from "lucide-react";
 import ApiKeyBar from "./ApiKeyBar";
 import ApiKeyInfo from "./ApiKeyInfo";
@@ -24,6 +25,7 @@ import CharCounter from "./CharCounter";
 import VoiceInput from "./VoiceInput";
 import SuggestedChainPills from "./SuggestedChainPills";
 import RunRating from "./RunRating";
+import BatchModeRunner from "./BatchModeRunner";
 import ErrorBoundary from "./ErrorBoundary";
 import ScheduleAgentModal from "./ScheduleAgentModal";
 import { useScheduler } from "../lib/useScheduler";
@@ -83,6 +85,7 @@ export default function AgentRunner({ agent }) {
   const [modelRecommendation, setModelRecommendation] = useState(null);
   const [analyserLoading, setAnalyserLoading] = useState(false);
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
+  const [batchMode, setBatchMode] = useState(false);
   const [showModelSwitcher, setShowModelSwitcher] = useState(false);
   const { addJob } = useScheduler();
 
@@ -90,9 +93,10 @@ export default function AgentRunner({ agent }) {
   const abortControllerRef = useRef(null);
 
   useKeyboardShortcuts({
-    'Control+Enter': () => {
-      if (canRun() && !loading) handleRun();
-    },
+  'Control+Enter': () => {
+    if (batchMode) return;
+    if (canRun() && !loading) handleRun();
+  },
     'Escape': () => {
       handleClear();
       setPlaygroundOpen(false);
@@ -115,6 +119,7 @@ export default function AgentRunner({ agent }) {
     setDuration(null);
     setCustomPrompt(agent.systemPrompt);
     setPlaygroundOpen(false);
+    setBatchMode(false);
 
     const defaults = {};
     agent.inputs.forEach((input) => {
@@ -324,6 +329,9 @@ export default function AgentRunner({ agent }) {
   };
 
   const IconComponent = Icons[agent.icon] || Icons.Bot;
+  const supportsBatchMode = agent.inputs.some((i) =>
+    ["text", "textarea", "code"].includes(i.type)
+  );
 
   return (
     <div className="max-w-3xl mx-auto animate-fade-in">
@@ -383,6 +391,36 @@ export default function AgentRunner({ agent }) {
         setModel={setSelectedModel}
       />
 
+      {supportsBatchMode && (
+        <div className="flex items-center gap-2 mb-4">
+          <button
+            onClick={() => setBatchMode((prev) => !prev)}
+            title="Run this agent across multiple inputs at once"
+            className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors
+              ${
+                batchMode
+                  ? "bg-accent/15 text-accent border border-accent/30"
+                  : "dark:text-text-secondary dark:hover:text-text-primary dark:hover:bg-surface-hover text-gray-500 hover:text-gray-900 hover:bg-gray-100 border border-transparent"
+              }`}
+          >
+            <Layers size={14} />
+            {batchMode ? "Exit Batch Mode" : "Batch Mode"}
+          </button>
+        </div>
+      )}
+
+      {batchMode ? (
+        <div className="mb-6">
+          <BatchModeRunner
+            agent={agent}
+            provider={agent.provider === "any" ? provider : agent.provider}
+            apiKey={apiKey}
+            selectedModel={selectedModel}
+            systemPrompt={customPrompt}
+          />
+        </div>
+      ) : (
+        <>
       {/* Input Form */}
       <div className="space-y-3 mb-4">
         {agent.inputs.map((input) => (
@@ -872,6 +910,9 @@ export default function AgentRunner({ agent }) {
             </button>
           </div>
         </div>
+      )}
+
+      </>
       )}
 
       {/* Schedule Agent Modal */}
