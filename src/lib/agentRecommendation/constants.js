@@ -8,7 +8,7 @@ export const STEP_IDS = {
   PREFERENCES: 'preferences',
 }
 
-export const RESULT_LIMIT = 5
+export const RESULT_LIMIT = 10
 export const MIN_CONFIDENT_SCORE = 12
 
 export const DEFAULT_RECOMMENDATION_WEIGHTS = {
