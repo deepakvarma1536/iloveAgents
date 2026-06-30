@@ -1,4 +1,4 @@
-import { BookOpen, Briefcase, Code2, Palette, PenLine, Search, Sparkles, Zap, ShieldCheck, ListChecks } from 'lucide-react'
+import { BarChart3, BookOpen, Briefcase, Code2, Image, PenLine, Search, Workflow } from 'lucide-react'
 
 export const STEP_IDS = {
   GOAL: 'goal',
@@ -22,15 +22,18 @@ export const DEFAULT_RECOMMENDATION_WEIGHTS = {
   freeTextDescription: 5,
   experience: 3,
   urgency: 3,
+  capabilityKeyword: 6,
 }
 
 export const GOAL_OPTIONS = [
-  { id: 'build-software', label: 'Build or debug software', description: 'Code, APIs, SQL, DevOps, tests, and technical reviews.', icon: Code2, categories: ['Engineering', 'DevOps', 'Developer Tools', 'Data Science'], taskTypes: ['code', 'debug', 'review', 'analyze'] },
-  { id: 'write-content', label: 'Write or improve content', description: 'Marketing copy, posts, SEO, scripts, and rewritten text.', icon: PenLine, categories: ['Marketing', 'Productivity', 'Sales'], taskTypes: ['write', 'generate', 'rewrite', 'optimize'] },
-  { id: 'research', label: 'Research or summarize information', description: 'Summaries, analysis, documents, logs, datasets, and insights.', icon: Search, categories: ['Research', 'Productivity', 'Engineering', 'Data Science'], taskTypes: ['research', 'summarize', 'analyze'] },
-  { id: 'learn', label: 'Learn or prepare', description: 'Study plans, quizzes, flashcards, interview prep, and explainers.', icon: BookOpen, categories: ['Education', 'Engineering'], taskTypes: ['explain', 'quiz', 'plan', 'practice'] },
-  { id: 'business', label: 'Plan business, product, or sales work', description: 'Strategy, personas, PRDs, proposals, outreach, and operations.', icon: Briefcase, categories: ['Business', 'Product', 'Sales', 'HR', 'Finance', 'Real Estate'], taskTypes: ['plan', 'strategy', 'analyze', 'write'] },
-  { id: 'design', label: 'Design or create something visual', description: 'Images, typography, colors, game design, and creative assets.', icon: Palette, categories: ['Design', 'Gaming'], taskTypes: ['design', 'creative', 'generate'] },
+  { id: 'coding-development', label: 'Coding & Development', description: 'Build, debug, review, and document software.', icon: Code2, categories: ['Engineering', 'DevOps', 'Developer Tools', 'Web3'], taskTypes: ['code', 'debug', 'review', 'technical'] },
+  { id: 'research-analysis', label: 'Research & Analysis', description: 'Find, compare, summarize, and evaluate information.', icon: Search, categories: ['Research', 'Data Science', 'Business', 'Productivity'], taskTypes: ['research', 'summarize', 'analyze'] },
+  { id: 'writing-content', label: 'Writing & Content', description: 'Create and improve copy, posts, scripts, and documents.', icon: PenLine, categories: ['Marketing', 'Productivity', 'Sales'], taskTypes: ['write', 'rewrite', 'generate', 'optimize'] },
+  { id: 'automation', label: 'Automation', description: 'Streamline workflows, pipelines, schedules, and operations.', icon: Workflow, categories: ['DevOps', 'Engineering', 'Productivity'], taskTypes: ['automation', 'technical', 'plan'] },
+  { id: 'data-analysis', label: 'Data Analysis', description: 'Clean, query, explain, and model data.', icon: BarChart3, categories: ['Data Science', 'Engineering'], taskTypes: ['data', 'analyze', 'technical'] },
+  { id: 'image-generation', label: 'Image Generation', description: 'Create image prompts and visual assets.', icon: Image, categories: ['Design'], taskTypes: ['image', 'creative', 'generate'] },
+  { id: 'learning', label: 'Learning', description: 'Study, practice, prepare, and understand concepts.', icon: BookOpen, categories: ['Education'], taskTypes: ['explain', 'quiz', 'practice', 'plan'] },
+  { id: 'business-productivity', label: 'Business & Productivity', description: 'Plan work, improve operations, and grow outcomes.', icon: Briefcase, categories: ['Business', 'Product', 'Productivity', 'Sales', 'HR', 'Finance', 'Real Estate'], taskTypes: ['strategy', 'plan', 'write', 'analyze'] },
 ]
 
 export const EXPERIENCE_OPTIONS = [
@@ -48,19 +51,19 @@ export const PROVIDER_OPTIONS = [
 ]
 
 export const BUDGET_OPTIONS = [
-  { id: 'balanced', label: 'Balanced recommendation', description: 'Balance specificity and capability.' },
-  { id: 'quick', label: 'Prefer simpler/faster agents', description: 'Favor focused, direct helpers.' },
-  { id: 'thorough', label: 'Prefer capable/thorough agents', description: 'Favor analysis, audits, and detailed planning.' },
+  { id: 'fast', label: 'Fast & lightweight', description: 'Prefer focused agents for direct tasks.' },
+  { id: 'balanced', label: 'Balanced', description: 'Balance focus with depth.' },
+  { id: 'capable', label: 'Most capable', description: 'Prefer agents suited to detailed work.' },
   { id: 'any', label: 'No preference', description: 'Do not adjust ranking for this.' },
 ]
 
 export const EXTRA_PREFERENCE_OPTIONS = [
-  { id: 'structured', label: 'Needs structured output', icon: ListChecks, taskTypes: ['structure', 'document'], outputFormat: 'document' },
-  { id: 'checklist', label: 'Needs checklist or plan', icon: ListChecks, taskTypes: ['plan', 'checklist'], outputFormat: 'checklist' },
-  { id: 'technical', label: 'Needs code or technical detail', icon: Code2, taskTypes: ['code', 'debug', 'technical'], outputFormat: 'code' },
-  { id: 'concise', label: 'Needs concise answer', icon: Zap, taskTypes: ['summarize'], outputFormat: 'any' },
-  { id: 'creative', label: 'Needs creative ideas', icon: Sparkles, taskTypes: ['creative', 'generate'], outputFormat: 'document' },
-  { id: 'review', label: 'Needs risk or quality review', icon: ShieldCheck, taskTypes: ['review', 'audit', 'analyze'], outputFormat: 'checklist' },
+  { id: 'tool-calling', label: 'Tool Calling', capability: 'toolCalling' },
+  { id: 'fast-responses', label: 'Fast Responses', capability: 'fastResponses' },
+  { id: 'vision-support', label: 'Vision Support', capability: 'visionSupport' },
+  { id: 'structured-output', label: 'Structured Output', capability: 'structuredOutput' },
+  { id: 'open-source', label: 'Open Source', capability: 'openSource' },
+  { id: 'frequently-updated', label: 'Frequently Updated', capability: 'frequentlyUpdated' },
 ]
 
 export const STOP_WORDS = new Set(['the', 'and', 'for', 'with', 'that', 'this', 'from', 'your', 'you', 'into', 'about', 'need', 'needs', 'help', 'agent', 'agents', 'please', 'would'])

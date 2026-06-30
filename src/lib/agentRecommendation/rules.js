@@ -7,7 +7,7 @@ export const TASK_KEYWORDS = {
   generate: ['generate', 'generator', 'create', 'builder'],
   rewrite: ['rewrite', 'tone', 'improve', 'optimize'],
   optimize: ['seo', 'optimize', 'keyword', 'performance', 'cost'],
-  research: ['research', 'summarize', 'summary', 'competitive', 'market'],
+  research: ['research', 'compare', 'comparison', 'competitive', 'market', 'findings', 'evidence'],
   summarize: ['summary', 'summarize', 'notes', 'pdf', 'log'],
   explain: ['explain', 'eli5', 'explainer', 'guide'],
   quiz: ['quiz', 'flashcard', 'study', 'exam', 'paper'],
@@ -21,13 +21,16 @@ export const TASK_KEYWORDS = {
   checklist: ['checklist', 'steps', 'plan', 'runbook'],
   structure: ['structured', 'document', 'template', 'format'],
   document: ['document', 'documentation', 'report', 'proposal', 'prd'],
+  automation: ['automation', 'automate', 'workflow', 'pipeline', 'cron', 'schedule'],
+  data: ['data', 'dataset', 'sql', 'query', 'etl', 'model', 'analytics'],
+  image: ['image', 'visual', 'photo', 'illustration', 'prompt'],
 }
 
-export const OUTPUT_KEYWORDS = {
-  document: ['document', 'documentation', 'report', 'proposal', 'prd', 'whitepaper', 'policy'],
-  code: ['code', 'api', 'sql', 'regex', 'unit test', 'manifest', 'yaml'],
-  checklist: ['checklist', 'plan', 'runbook', 'roadmap', 'steps'],
-  strategy: ['strategy', 'analysis', 'business', 'competitive', 'market', 'sales'],
-  email: ['email', 'reply', 'outreach', 'follow-up', 'cold email'],
-  data: ['data', 'dataset', 'schema', 'csv', 'etl', 'ml'],
+export const CAPABILITY_KEYWORDS = {
+  toolCalling: ['tool calling', 'tools', 'api', 'automation', 'workflow'],
+  fastResponses: ['fast', 'quick', 'instant', 'rapid', 'lightweight', 'direct'],
+  visionSupport: ['vision', 'image', 'visual', 'photo', 'screenshot'],
+  structuredOutput: ['structured', 'json', 'schema', 'format', 'report', 'template', 'yaml', 'table'],
+  openSource: ['open source', 'open-source', 'github'],
+  frequentlyUpdated: ['frequently updated', 'regularly updated', 'actively maintained', 'latest', 'up-to-date'],
 }
