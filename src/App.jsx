@@ -23,6 +23,7 @@ const SuitesPage = lazy(() => import('./pages/SuitesPage'))
 const CollectionsPage = lazy(() => import('./pages/CollectionsPage'))
 const CollectionDetailPage = lazy(() => import('./pages/CollectionDetailPage'))
 const SchedulerPage = lazy(() => import('./pages/SchedulerPage'))
+const MarketplacePage = lazy(() => import('./pages/MarketplacePage'))
 const Privacy = lazy(() => import('./pages/Privacy'))
 
 function PageLoader() {
@@ -76,10 +77,12 @@ export default function App() {
 
               <Route path="/scheduler" element={<SchedulerPage />} />
 
-              <Route path="/workflows" element={<WorkflowLibrary />} />
-              <Route path="/workflows/build" element={<WorkflowBuilder />} />
-              <Route path="/workflows/:id" element={<WorkflowDetail />} />
-              <Route path="/workflows/:id/run" element={<WorkflowRunner />} />
+
+            <Route path="/marketplace" element={<MarketplacePage />} />
+            <Route path="/workflows" element={<WorkflowLibrary />} />
+            <Route path="/workflows/build" element={<WorkflowBuilder />} />
+            <Route path="/workflows/:id" element={<WorkflowDetail />} />
+            <Route path="/workflows/:id/run" element={<WorkflowRunner />} />
 
               <Route path="*" element={<NotFoundPage />} />
             </Route>
