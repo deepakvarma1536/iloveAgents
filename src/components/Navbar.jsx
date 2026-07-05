@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import {
   Sun,
@@ -19,6 +19,7 @@ import Logo from './Logo'
 import KeyboardShortcutsModal from './KeyboardShortcutsModal'
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 import { useSessionSpend } from '../lib/useSessionSpend'
+import { useOnClickOutside } from '../hooks/useOnClickOutside'
 
 export default function Navbar({ sidebarOpen, setSidebarOpen }) {
   const [darkMode, setDarkMode] = useState(true)
@@ -26,6 +27,10 @@ export default function Navbar({ sidebarOpen, setSidebarOpen }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showSpendPopup, setShowSpendPopup] = useState(false)
   const { totalSpend, runs, clearSession } = useSessionSpend()
+
+  const menuRef = useRef(null)
+
+  useOnClickOutside(menuRef, () => setMobileMenuOpen(false), mobileMenuOpen)
 
   useKeyboardShortcuts({
     '?': () => setShowShortcuts(true),
@@ -72,6 +77,7 @@ export default function Navbar({ sidebarOpen, setSidebarOpen }) {
   return (
     <>
       <nav
+        ref={menuRef}
         className="
           fixed top-3 left-3 right-3 z-50
           mx-auto max-w-6xl
